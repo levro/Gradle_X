@@ -1,0 +1,16 @@
+plugins {
+    id 'application'
+}
+
+version = '1.0'
+
+mainClassName = 'App'
+
+dependencies {
+    compile 'com.google.guava:guava:23.0'    
+    compile project(":utils_module")
+}
+
+jar {
+    manifest.attributes("Main-Class": mainClassName);
+}

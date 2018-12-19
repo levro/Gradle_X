@@ -1,0 +1,56 @@
+apply plugin: "idea"
+
+version = "0.1_beta"
+
+subprojects {
+    apply plugin: "java"
+
+    dependencies {
+        compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+    }
+
+    tasks.withType(JavaCompile) {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "1.12"
+}
+
+task readProps{
+    doLast {
+        Properties props = new Properties()
+        File propsFile = new File("props.txt")
+        props.load(propsFile.newDataInputStream())
+        println props.getProperty('superKey')
+        println(props.stringPropertyNames())
+    }
+}
+
+task writeProps {
+    doLast {
+        Properties props = new Properties()
+        File propsFile = new File("props.txt")
+        Integer rand = new Random().next(4)
+        props.setProperty('defaultKey', "defaultValue")
+        props.setProperty('superKey', rand.toString())
+        props.store(propsFile.newWriter(), null)
+    }
+}
+
+task printProps {
+    doLast {
+        println commandLineProjectProp
+        println gradlePropertiesProp
+        println systemProjectProp
+        println System.properties['system']
+        println System.properties['magicWord']
+    }
+}

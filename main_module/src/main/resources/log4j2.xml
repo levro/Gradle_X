@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <CustomLevels>
+        <CustomLevel name="epicFail" intLevel="50" />
+    </CustomLevels>
+    <Appenders>
+        <File name="appLog" fileName="app.log" append="true">
+            <PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+        </File>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss} %level - %m%n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache.log4j.xml" level="debug">
+            <AppenderRef ref="appLog"/>
+        </Logger>
+        <Root level="ALL">
+            <AppenderRef ref="appLog"  level="trace" />
+            <AppenderRef ref="Console" level="warn"  />
+        </Root>
+    </Loggers>
+</Configuration>
