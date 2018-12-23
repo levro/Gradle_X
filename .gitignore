@@ -1,3 +1,5 @@
 .gradle
 .idea
 *.iml
+*.log
+src/test/temp_files/*.*
