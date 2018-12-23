@@ -31,7 +31,7 @@ public class FileOperations {
             book.write( new FileOutputStream( fileName ) );
             book.close();
         } catch ( IOException e ) {
-            log.error( "IOException: " + e );
+            log.error( "IOException: " + e.getMessage() );
         }
     }
 
@@ -42,10 +42,8 @@ public class FileOperations {
         try {
             excelInputStream = new FileInputStream( new File( fileName ) );
             workbook = new HSSFWorkbook( excelInputStream );
-        } catch ( FileNotFoundException e ) {
-            log.error( "FNFException: " + e );
         } catch ( IOException e ) {
-            log.error( "IOException: " + e );
+            log.error( "IOException: " + e.getMessage() );
         }
         Sheet sheet = workbook.getSheetAt( 0 );
         Iterator<Row> rowItr = sheet.iterator();
@@ -69,7 +67,7 @@ public class FileOperations {
             workbook.close();
             excelInputStream.close();
         } catch ( IOException e ) {
-            log.error( "IOException: " + e );
+            log.error( "IOException: " + e.getMessage() );
         }
         return result;
     }
@@ -80,10 +78,8 @@ public class FileOperations {
         try {
             excelInputStream = new FileInputStream( new File( fileName ) );
             book = new HSSFWorkbook( excelInputStream );
-        } catch ( FileNotFoundException e ) {
-            log.error( "FNFException: " + e );
         } catch ( IOException e ) {
-            log.error( "IOException: " + e );
+            log.error( "IOException: " + e.getMessage() );
         }
         Sheet sheet = book.getSheetAt( 0 );
         int startRow = sheet.getLastRowNum() + 1;
@@ -102,7 +98,7 @@ public class FileOperations {
             book.write( new FileOutputStream( fileName ) );
             book.close();
         } catch ( IOException e ) {
-            log.error( "IOException: " + e );
+            log.error( "IOException: " + e.getMessage() );
         }
     }
 
