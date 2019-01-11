@@ -1,10 +1,10 @@
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class FileOpsTestCase {
     private static final String XLS_FILE = "test_file.xls";

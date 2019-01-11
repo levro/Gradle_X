@@ -1,8 +1,9 @@
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
-import static junit.framework.TestCase.assertEquals;
+import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 
 public class UtilsTestCase {
@@ -45,12 +46,12 @@ public class UtilsTestCase {
         }
     }
 
-    @Test (expected = IllegalCharacter.class)
+    @Test (expectedExceptions = IllegalCharacter.class)
     public void testCheckStringAException() throws IllegalCharacter {
         StrUtilsExcept.checkString( " .a" );
     }
 
-    @Test (expected = IllegalCharacter.class)
+    @Test (expectedExceptions = IllegalCharacter.class)
     public void testCheckStringBException() throws IllegalCharacter {
         StrUtilsExcept.checkString( "00b" );
     }
