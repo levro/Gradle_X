@@ -15,16 +15,12 @@ import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class SelTest {
 
-    public WebDriver driver;
-
-
     @BeforeClass
     public static void openKsMobile() {
         timeout = 10000;
         baseUrl = "https://app-ksmobile.ssstest.com";
         startMaximized = false;
-        browser = "firefox";
-        System.setProperty("selenide.browser", "firefox");
+        browser = "chrome";
         browserPosition = "10x10";
         browserSize = "1024x960";
         //addListener( new Highlighter());
