@@ -1,58 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
 <suite name="TestSuite" thread-count="2" parallel="none" >
-
-    <parameter name="global_param" value="Yahoo" />
-
+    <parameter name="global_param" value="Gogogo" />
     <test name="ChromeTest">
-
         <parameter name="brow" value="Chrome" />
         <parameter name="browserPosition" value="100x10" />
         <classes>
-
             <class name="UI_tests">
                 <methods>
                     <include name="testloginScreen"/>
                 </methods>
-
             </class>
-
         </classes>
-
     </test>
-
     <test name="FirefoxTest">
-
         <parameter name="brow" value="Firefox" />
-        <parameter name="browserPosition" value="100x10" />
+        <parameter name="browserPosition" value="150x10" />
         <classes>
-
             <class name="UI_tests">
                 <methods>
                     <include name="testloginScreen"/>
                 </methods>
             </class>
-
         </classes>
-
     </test>
-
     <test name="EdgeTest">
-
         <parameter name="brow" value="Edge" />
-        <parameter name="browserPosition" value="100x10" />
+        <parameter name="browserPosition" value="200x10" />
         <classes>
-
             <class name="UI_tests">
                 <methods>
                     <include name="testloginScreen"/>
                 </methods>
             </class>
-
         </classes>
-
     </test>
-
 </suite>
