@@ -1,5 +1,4 @@
 rootProject.name = 'Gradle_X'
 
-include 'main_module', 'utils_module', 'test_module', 'selenide'
-include 'firefox'
+include 'main_module', 'utils_module', 'test_module', 'firefox'
 
