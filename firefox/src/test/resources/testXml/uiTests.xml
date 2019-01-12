@@ -5,20 +5,41 @@
 
     <test name="ChromeTest">
         <parameter name="browser" value="chrome" />
+        <parameter name="browserPosition" value="100x10" />
         <classes>
-            <class name="UI_tests"/>
+            <class name="UI_tests">
+                <methods>
+                    <include name="testloginScreen"/>
+                    <include name="testSurveyLabels"/>
+                    <include name="testContactsLabels"/>
+                </methods>
+            </class>
         </classes>
     </test>
     <test name="FirefoxTest">
         <parameter name="browser" value="firefox" />
+        <parameter name="browserPosition" value="150x10" />
         <classes>
-            <class name="UI_tests" />
+            <class name="UI_tests">
+                <methods>
+                    <include name="testloginScreen"/>
+                    <include name="testSurveyLabels"/>
+                    <include name="testContactsLabels"/>
+                </methods>
+            </class>
         </classes>
     </test>
-    <test name="IETest">
-        <parameter name="browser" value="ie" />
+    <test name="EdgeTest">
+        <parameter name="browser" value="edge" />
+        <parameter name="browserPosition" value="200x10" />
         <classes>
-            <class name="UI_tests" />
+            <class name="UI_tests">
+                <methods>
+                    <include name="testloginScreen"/>
+                    <include name="testSurveyLabels"/>
+                    <include name="testContactsLabels"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

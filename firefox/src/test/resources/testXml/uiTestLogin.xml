@@ -8,8 +8,8 @@
 
     <test name="ChromeTest">
 
-        <parameter name="browser" value="Chrome" />
-
+        <parameter name="brow" value="Chrome" />
+        <parameter name="browserPosition" value="100x10" />
         <classes>
 
             <class name="UI_tests">
@@ -25,8 +25,8 @@
 
     <test name="FirefoxTest">
 
-        <parameter name="browser" value="Firefox" />
-
+        <parameter name="brow" value="Firefox" />
+        <parameter name="browserPosition" value="100x10" />
         <classes>
 
             <class name="UI_tests">
@@ -41,8 +41,8 @@
 
     <test name="EdgeTest">
 
-        <parameter name="browser" value="Edge" />
-
+        <parameter name="brow" value="Edge" />
+        <parameter name="browserPosition" value="100x10" />
         <classes>
 
             <class name="UI_tests">

@@ -2,17 +2,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.confirm;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.getAndCheckWebDriver;
 
 public class UI_tests {
 
@@ -22,36 +21,32 @@ public class UI_tests {
 /*    @Rule
     public ScreenShooter screenShooter = ScreenShooter.failedTests();*/
 
-    @BeforeTest
     @Parameters({"browser", "browserPosition"})
-    public static void openKSMob() {
+    @BeforeTest
+    public static void openKSMob(String brow, String browPos) {
         log.info("--------> Set up webDriver");
-        timeout = 10000;
+        timeout = 15000;
         baseUrl = "https://app-ksmobile.ssstest.com";
         startMaximized = false;
+        browserPosition = browPos;
         browserSize = "1024x720";
-        browserPosition = "100x10";
-        browser = "firefox";
-        System.setProperty("selenide.browser", "firefox");
-        //webDriver = getAndCheckWebDriver();
-/*        if (browser.equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.firefox.marionette", "src\\test\\resources\\webdriver\\geckodriver.exe");
-            open("/");
-            //webDriver = new FirefoxDriver();
-        } else if (browser.equalsIgnoreCase("chrome")) {
+        if (brow.equalsIgnoreCase("firefox")) {
             browser = "firefox";
-            System.setProperty("webdriver.firefox.marionette", "src\\test\\resources\\webdriver\\geckodriver.exe");
-            //System.setProperty("webdriver.chrome.driver", "src\\test\\resources\\webdriver\\chromedriver.exe");
-            open("/");
-            //webDriver = new ChromeDriver();
-        } else if (browser.equalsIgnoreCase("ei")) {
-            System.setProperty("webdriver.edge.driver", "src\\test\\resources\\webdriver\\MicrosoftWebDriver.exe");
-            open("/");
-            //webDriver = new InternetExplorerDriver();
-        }*/
+            System.setProperty("selenide.browser", "firefox");
+        } else if (brow.equalsIgnoreCase("chrome")) {
+            browser = "chrome";
+            System.setProperty("selenide.browser", "chrome");
+        } else if (brow.equalsIgnoreCase("ei")) {
+            browser = "ie";
+            System.setProperty("selenide.browser", "ie");
+        } else if (brow.equalsIgnoreCase("edge")) {
+            browser = "edge";
+            System.setProperty("selenide.browser", "edge");
+        }
         log.info("--------> Open url: " + baseUrl);
 
         open("/");
+        webDriver = getAndCheckWebDriver();
     }
 
     @AfterTest
