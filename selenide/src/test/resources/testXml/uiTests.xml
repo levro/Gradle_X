@@ -2,7 +2,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="UI_TESTS_CROSSBROWSER" parallel="none">
-
+    <listeners>
+        <listener class-name="org.uncommons.reportng.HTMLReporter"/>
+        <listener class-name="org.uncommons.reportng.JUnitXMLReporter"/>
+    </listeners>
     <test name="ChromeTest">
         <parameter name="browser" value="chrome" />
         <parameter name="browserPosition" value="100x10" />
