@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
+import java.util.concurrent.TimeUnit;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Configuration.*;
 import static com.codeborne.selenide.Selenide.*;
@@ -64,7 +66,7 @@ public class UI_tests {
     }
 
     @Test
-    public void testSurveyLabels() {
+    public void testSurveyLabels() throws InterruptedException {
         login();
         log.info("--------> Go to SURVEY menu");
         $(By.name("LABEL_SURVEY")).click();
@@ -76,7 +78,7 @@ public class UI_tests {
     }
 
     @Test
-    public void testContactsLabels() {
+    public void testContactsLabels() throws InterruptedException {
         login();
         log.info("--------> Go to CONTACTS menu");
         $(By.name("LABEL_CONTACTS")).click();
@@ -86,10 +88,11 @@ public class UI_tests {
         confirm();
     }
 
-    private static void login() {
+    private static void login() throws InterruptedException {
         $(By.id("login")).setValue("tomep1");
         $(By.id("password")).setValue("AutomationQA1");
         $(By.id("loginButton")).click();
+        TimeUnit.SECONDS.sleep(1);
         if (isAlertPresent()) {
             confirm();
         }
