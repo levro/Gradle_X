@@ -1,13 +1,12 @@
 package KS;
 
-import PageObject.BasePage;
 import PageObject.LoginPage;
 import PageObject.MainPage;
-import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class SurveysTest {
 
@@ -15,14 +14,23 @@ public class SurveysTest {
 
     @BeforeClass
     public void beforeClass() {
-        //webDriver = new BasePage().getWebDriver();
         loginPage = new LoginPage();
+    }
+
+    @AfterClass
+    public static void closeWebDrv() {
+        closeWebDriver();
     }
 
     @Test
     public void testLogin() {
-        open( "/" );
         MainPage mainPage = loginPage.login();
         assert (mainPage.isMainTreeDisplayed());
+    }
+
+    @Test
+    public void testCreateFolder() {
+        MainPage mainPage = loginPage.login();
+        mainPage.createFolder( "Selenide" );
     }
 }

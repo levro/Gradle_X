@@ -20,9 +20,6 @@ public class UI_tests {
     private static WebDriver webDriver;
     private final static Logger log = LogManager.getLogger(UI_tests.class);
 
-/*    @Rule
-    public ScreenShooter screenShooter = ScreenShooter.failedTests();*/
-
     @Parameters({"browser", "browserPosition"})
     @BeforeTest
     public static void openKSMob(String brow, String browPos) {

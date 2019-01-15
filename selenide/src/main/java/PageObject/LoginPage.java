@@ -1,4 +1,5 @@
 package PageObject;
+import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -13,26 +14,26 @@ public class LoginPage extends BasePage{
     private static By loginButton = By.id( "loginButton");
 
     public LoginPage() {
-        //super( webDriver );
+        open( "/" );
+        webDriver = getAndCheckWebDriver();
     }
 
     public MainPage login() {
         $(loginField).setValue( "tomep1");
         $(passwordField).setValue("AutomationQA1");
         $(loginButton).click();
-        sleep( 1000 );
-        confirm();
-/*        if (isAlertPresent()) {
+        sleep( 500 );
+        if (isAlertPresent()) {
             confirm();
-        }*/
-        sleep( 8000 );
+        }
+        $(By.id("treeRoot")).waitUntil( Condition.visible, 9000 );
+        //sleep( 5000 );
         return new MainPage();
 
     }
 
     static boolean isAlertPresent() {
         try {
-            webDriver = getAndCheckWebDriver();
             webDriver.switchTo().alert();
             return true;
         } catch ( Exception e ) {

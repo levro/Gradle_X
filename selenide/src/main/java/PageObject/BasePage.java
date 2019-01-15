@@ -12,10 +12,6 @@ public class BasePage {
 
     protected static WebDriver webDriver;
 
-    public BasePage( WebDriver webDriver ) {
-        this.webDriver = webDriver;
-    }
-
     public BasePage() {
         timeout = 15000;
         baseUrl = "https://app-ksmobile.ssstest.com";
