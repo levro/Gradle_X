@@ -2,13 +2,14 @@ package KS;
 
 import PageObject.LoginPage;
 import PageObject.MainPage;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
-public class SurveysTest {
+public class SurveysTest extends Assert {
 
     private LoginPage loginPage;
 
@@ -29,9 +30,23 @@ public class SurveysTest {
     }
 
     @Test
-    public void testCreateFolder() {
+    public void testCreateAndDeleteFolder() {
+        String folderName = "Selenide";
         MainPage mainPage = loginPage.login();
-        mainPage.createFolder( "Selenide" );
-        mainPage.selectFolderByName( "TemplateNew" );
+        mainPage.createFolder( folderName );
+        assertTrue( mainPage.isFolderPresent( folderName ), "Folder [" + folderName + "] is not present" );
+        mainPage.deleteFolderByName( folderName );
+        assertFalse( mainPage.isFolderPresent( folderName ), "Folder [" + folderName + "] should not present" );
+    }
+
+    @Test
+    public void testRenameFolder() {
+        String folderName = "Selenide";
+        MainPage mainPage = loginPage.login();
+        mainPage.createFolder( folderName );
+        String newFolderName = "Arsenide";
+        mainPage.renameFolder( folderName, newFolderName );
+        assertTrue( mainPage.isFolderPresent( newFolderName ), "Folder [" + newFolderName + "] is not present" );
+        mainPage.deleteFolderByName( newFolderName );
     }
 }
