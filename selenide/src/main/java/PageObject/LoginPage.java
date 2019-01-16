@@ -1,9 +1,8 @@
 package PageObject;
+
 import com.codeborne.selenide.Condition;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-import java.util.concurrent.TimeUnit;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getAndCheckWebDriver;
 
@@ -26,18 +25,8 @@ public class LoginPage extends BasePage{
         if (isAlertPresent()) {
             confirm();
         }
-        $(By.id("treeRoot")).waitUntil( Condition.visible, 9000 );
-        //sleep( 5000 );
+        $(By.id("treeRoot")).waitUntil( Condition.visible, 10000 );
         return new MainPage();
 
-    }
-
-    static boolean isAlertPresent() {
-        try {
-            webDriver.switchTo().alert();
-            return true;
-        } catch ( Exception e ) {
-            return false;
-        }
     }
 }

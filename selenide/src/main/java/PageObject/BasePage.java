@@ -1,44 +1,61 @@
 package PageObject;
 
 import org.openqa.selenium.WebDriver;
-
-import java.util.concurrent.TimeUnit;
-
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Properties;
 import static com.codeborne.selenide.Configuration.*;
-import static com.codeborne.selenide.Configuration.browserSize;
-import static com.codeborne.selenide.WebDriverRunner.getAndCheckWebDriver;
 
 public class BasePage {
 
+    private static final String CONFIG_FILE = "config.properties";
     protected static WebDriver webDriver;
 
     public BasePage() {
-        timeout = 15000;
-        baseUrl = "https://app-ksmobile.ssstest.com";
+        Properties properties = getPropertiesFromConfigFile();
+        if (properties != null ){
+            browser = properties.getProperty( "browser" );
+            System.setProperty("selenide.browser", browser);
+            timeout = Long.parseLong( properties.getProperty( "timeout" ) );
+            baseUrl = properties.getProperty( "baseUrl" );
+        }
         startMaximized = false;
         browserPosition = "10x10";
         browserSize = "1024x720";
     }
 
+
     public WebDriver getWebDriver() {
-        return getAndCheckWebDriver();
+        return webDriver;
     }
 
-/*    static boolean isAlertPresent() {
+    private Properties getPropertiesFromConfigFile() {
+        FileInputStream inputStream = null;
         try {
-            webDriver = getAndCheckWebDriver();
+            URL resource = BasePage.class.getClassLoader().getResource( CONFIG_FILE );
+            String info = resource.getPath();
+            inputStream = new FileInputStream( info );
+        } catch ( FileNotFoundException e ) {
+            System.out.println( e );
+            return  null;
+        }
+        Properties prop = new Properties();
+        try {
+            prop.load( inputStream );
+        } catch ( IOException e ) {
+            System.out.println( e );
+        }
+        return prop;
+    }
+
+    static boolean isAlertPresent() {
+        try {
             webDriver.switchTo().alert();
             return true;
         } catch (Exception e) {
             return false;
-        }
-    }*/
-
-    static void sleep( int mills ) {
-        try {
-            TimeUnit.MILLISECONDS.sleep( mills);
-        } catch ( InterruptedException e ) {
-            System.out.println( e );
         }
     }
 }
