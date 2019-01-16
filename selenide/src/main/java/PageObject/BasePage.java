@@ -1,11 +1,13 @@
 package PageObject;
 
 import org.openqa.selenium.WebDriver;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Properties;
+
 import static com.codeborne.selenide.Configuration.*;
 
 public class BasePage {
@@ -15,17 +17,14 @@ public class BasePage {
 
     public BasePage() {
         Properties properties = getPropertiesFromConfigFile();
-        if (properties != null ){
-            browser = properties.getProperty( "browser" );
-            System.setProperty("selenide.browser", browser);
-            timeout = Long.parseLong( properties.getProperty( "timeout" ) );
-            baseUrl = properties.getProperty( "baseUrl" );
-        }
+        browser = properties.getProperty( "browser" );
+        System.setProperty( "selenide.browser", browser );
+        timeout = Long.parseLong( properties.getProperty( "timeout" ) );
+        baseUrl = properties.getProperty( "baseUrl" );
         startMaximized = false;
         browserPosition = "10x10";
         browserSize = "1024x720";
     }
-
 
     public WebDriver getWebDriver() {
         return webDriver;
@@ -39,7 +38,7 @@ public class BasePage {
             inputStream = new FileInputStream( info );
         } catch ( FileNotFoundException e ) {
             System.out.println( e );
-            return  null;
+            return null;
         }
         Properties prop = new Properties();
         try {
@@ -54,7 +53,7 @@ public class BasePage {
         try {
             webDriver.switchTo().alert();
             return true;
-        } catch (Exception e) {
+        } catch ( Exception e ) {
             return false;
         }
     }

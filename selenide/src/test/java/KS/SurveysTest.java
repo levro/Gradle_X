@@ -32,5 +32,6 @@ public class SurveysTest {
     public void testCreateFolder() {
         MainPage mainPage = loginPage.login();
         mainPage.createFolder( "Selenide" );
+        mainPage.selectFolderByName( "TemplateNew" );
     }
 }
