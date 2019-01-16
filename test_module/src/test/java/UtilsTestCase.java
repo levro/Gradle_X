@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
-
 public class UtilsTestCase {
     private static final Level mediumFail = Level.forName( "50/50FAIL", 25);
     private final static Logger log = LogManager.getLogger( UtilsTestCase.class );
