@@ -3,36 +3,36 @@ package KS;
 import PageObject.LoginPage;
 import PageObject.MainPage;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class SurveysTest extends Assert {
 
     private LoginPage loginPage;
+    private MainPage mainPage;
 
-    @BeforeClass
-    public void beforeClass() {
+    @BeforeMethod
+    public void beforeMethod() {
         loginPage = new LoginPage();
     }
 
-    @AfterClass
-    public static void closeWebDrv() {
+    @AfterMethod
+    public void closeWebDrv() {
+        mainPage.logout();
         closeWebDriver();
     }
 
     @Test
     public void testLogin() {
-        MainPage mainPage = loginPage.login();
+        mainPage = loginPage.login();
         assert (mainPage.isMainTreeDisplayed());
     }
 
     @Test
     public void testCreateAndDeleteFolder() {
         String folderName = "Selenide";
-        MainPage mainPage = loginPage.login();
+        mainPage = loginPage.login();
         mainPage.createFolder( folderName );
         assertTrue( mainPage.isFolderPresent( folderName ), "Folder [" + folderName + "] is not present" );
         mainPage.deleteFolderByName( folderName );
@@ -42,7 +42,7 @@ public class SurveysTest extends Assert {
     @Test
     public void testRenameFolder() {
         String folderName = "Selenide";
-        MainPage mainPage = loginPage.login();
+        mainPage = loginPage.login();
         mainPage.createFolder( folderName );
         String newFolderName = "Arsenide";
         mainPage.renameFolder( folderName, newFolderName );

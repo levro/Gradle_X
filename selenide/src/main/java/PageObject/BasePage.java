@@ -1,5 +1,6 @@
 package PageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import java.io.FileInputStream;
@@ -9,6 +10,8 @@ import java.net.URL;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.confirm;
 
 public class BasePage {
 
@@ -28,6 +31,11 @@ public class BasePage {
 
     public WebDriver getWebDriver() {
         return webDriver;
+    }
+
+    public void logout() {
+        $( By.linkText( "Logout")).click();
+        confirm();
     }
 
     private Properties getPropertiesFromConfigFile() {
