@@ -1,6 +1,7 @@
+
 dependencies {
-    compile group: 'org.testng', name: 'testng', version: '6.11'
-    testCompile 'com.codeborne:selenide:5.1.0'
+    testCompile group: 'org.testng', name: 'testng', version: '6.11'
+    compile 'com.codeborne:selenide:5.1.0'
     testCompile 'org.uncommons:reportng:1.1.4'
     compile 'com.google.inject:guice:4.0'
     compile project(":main_module")
