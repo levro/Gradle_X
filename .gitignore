@@ -1,5 +1,7 @@
 .gradle
 .idea
+.idea/libraries
 *.iml
 *.log
-src/test/temp_files/*.*
+selenide/test-output
+test_module/src/test/temp_files/*.*
