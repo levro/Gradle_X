@@ -1,3 +1,6 @@
+configurations {
+    agent
+}
 
 dependencies {
     testCompile group: 'org.testng', name: 'testng', version: '6.11'
@@ -5,11 +8,15 @@ dependencies {
     testCompile 'org.uncommons:reportng:1.1.4'
     compile 'com.google.inject:guice:4.0'
     compile project(":main_module")
+    compile("io.qameta.allure:allure-testng:2.9.0")
+    agent "org.aspectj:aspectjweaver:1.8.10"
 }
+
 
 test {
     useTestNG() {
-        useDefaultListeners = false
-        reports.html.enabled = false
+        test.doFirst {
+            jvmArgs "-javaagent:${configurations.agent.singleFile}"
+        }
     }
 }
