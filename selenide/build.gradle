@@ -1,3 +1,13 @@
+plugins {
+    id "io.qameta.allure" version "2.6.0"
+}
+
+repositories {
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+}
+
 configurations {
     agent
 }
@@ -10,6 +20,7 @@ dependencies {
     compile project(":main_module")
     compile("io.qameta.allure:allure-testng:2.9.0")
     agent "org.aspectj:aspectjweaver:1.8.10"
+    compileClasspath "io.qameta.allure:allure-gradle:2.5"
 }
 
 
@@ -18,5 +29,11 @@ test {
         test.doFirst {
             jvmArgs "-javaagent:${configurations.agent.singleFile}"
         }
+        include( 'C:/GIT/Gradle_X/selenide/src/test/resources/testXml/foldersTest.xml' )
     }
+}
+
+allure {
+    version = '2.2.1'
+    autoconfigure = true
 }
