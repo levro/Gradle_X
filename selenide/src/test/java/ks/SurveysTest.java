@@ -1,7 +1,7 @@
-package KS;
+package ks;
 
-import PageObject.LoginPage;
-import PageObject.MainPage;
+import pageObject.LoginPage;
+import pageObject.MainPage;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
