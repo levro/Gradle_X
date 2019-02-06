@@ -12,4 +12,13 @@ test {
         useDefaultListeners = false
         reports.html.enabled = false
     }
+    include 'src/test/resources/testXml/folderTest.xml'
+}
+
+task testFolders (type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testXml/folderTest.xml'
+        include 'src/test/resources/testXml/folderTest.xml'
+    }
+    include 'src/test/resources/testXml/folderTest.xml'
 }
